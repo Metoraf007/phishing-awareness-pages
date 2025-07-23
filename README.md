@@ -77,4 +77,6 @@ Feel free to fork and adapt for your organization’s needs.
 
 ## 📸 Preview
 
-![Preview Screenshot](preview.png) <!-- Add a screenshot if you like -->
+![Preview Screenshot](/preview/preview1.png) <!-- Add a screenshot if you like -->
+---
+![Preview Screenshot](/preview/preview2.png) <!-- Add a screenshot if you like -->
