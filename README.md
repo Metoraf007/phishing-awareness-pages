@@ -24,7 +24,7 @@ This tool is part of an internal cybersecurity awareness campaign. It aims to:
 ## 🚀 How to Use
 
 1. **Deploy via GitHub Pages** (free):
-   - Upload `index.html` and `logo.png` to the root of the repository
+   - Upload your chosen awareness page (e.g., `secure-wifi-login.html`) and `logo.png` to the root of the repository
    - Enable GitHub Pages in repo settings → Pages → Source → Main → Root
    - Copy the generated URL
 
@@ -42,9 +42,14 @@ This tool is part of an internal cybersecurity awareness campaign. It aims to:
 
 | File         | Description                                      |
 |--------------|--------------------------------------------------|
-| `index.html` | The phishing simulation SPA (responsive, dark mode) |
-| `logo.png`   | Optional company logo displayed on the page      |
-| `README.md`  | This documentation file                          |
+| `secure-wifi-login.html` | Simulated Wi-Fi login page |
+| `camera-awareness.html` | Camera access awareness page |
+| `camera-threat-info.html` | Details about camera-related threats |
+| `osint-awareness.html` | OSINT & privacy awareness page |
+| `qr-threat-info.html` | Information about QR code phishing |
+| `theme.css` | Shared styling for the awareness pages |
+| `preview/` | Folder containing screenshots |
+| `README.md` | This documentation file |
 
 ---
 
