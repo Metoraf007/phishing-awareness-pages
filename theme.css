@@ -1,0 +1,61 @@
+  body {
+    font-family: "Segoe UI", sans-serif;
+    padding: 2rem;
+    text-align: center;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  .box {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+
+  /* Light mode styles (default) */
+  body {
+    background-color: #f4f4f4;
+    color: #111;
+  }
+
+  .box {
+    background: #fff;
+  }
+
+  h2, h4 {
+    color: #c62828;
+  }
+
+  .muted {
+    color: #555;
+  }
+  .hidden {
+    display: none;
+  }
+  /* Dark mode override */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    .box {
+      background: #1e1e1e;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h2, h4 {
+      color: #f44336;
+    }
+
+    .muted {
+      color: #aaa;
+    }
+
+    .btn {
+      color: #fff;
+    }
+  }

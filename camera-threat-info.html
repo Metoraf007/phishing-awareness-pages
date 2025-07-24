@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Camera Access Risk Awareness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .box {
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+    .muted {
+      font-size: 0.9rem;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+    .back-btn {
+      margin-top: 2rem;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-toggle">
+    <button onclick="toggleLanguage()" class="btn btn-secondary btn-sm">EN / עברית</button>
+  </div>
+
+  <div class="box">
+    <!-- Hebrew Section -->
+    <div id="hebrew-section">
+      <h2 class="text-center mb-4">סכנות בגישה למצלמה ודברים שכדאי לדעת</h2>
+
+      <h4>⚠️ מה הבעיה?</h4>
+      <p>
+        אתרים יכולים לבקש גישה למצלמה ולמיקרופון שלך. לפעמים זו בקשה לגיטימית, אבל לפעמים — מדובר במתקפת פישינג מתוחכמת או בניסיון לרגל אחריך.
+      </p>
+
+      <h4>🎯 דוגמאות לסיכונים נפוצים:</h4>
+      <ul>
+        <li>🎥 צילום של המשתמש או סביבתו ללא ידיעתו</li>
+        <li>🎙️ האזנה לשיחות או רעשים בסביבה שלך</li>
+        <li>📸 לכידת תמונה בפריים לא מכוון והפצתה</li>
+        <li>🛠️ התקנת קוד זדוני להפעלת מצלמה מרחוק</li>
+        <li>🕵️ שימוש בזיהוי פנים לזיהוי מיקום/זהות</li>
+      </ul>
+
+      <h4>✅ איך להיזהר ולהגן על עצמך:</h4>
+      <ul>
+        <li>🔒 לעולם אל תאשר גישה למצלמה אם אינך בטוח שהעמוד מהימן</li>
+        <li>🔍 ודא שהקישור הגיע ממקור רשמי או מוכר</li>
+        <li>📵 סגור את ההרשאות לדף מיידית אם הופעלו בטעות</li>
+        <li>🧯 הפעל הגדרות מערכת המגבילות שימוש במצלמה</li>
+        <li>🎭 מומלץ לכסות את המצלמה כשאינה בשימוש</li>
+      </ul>
+
+      <h4>🛡️ לסיכום:</h4>
+      <p>
+        גישה למצלמה היא דבר עוצמתי — ואסור להתייחס אליו כמובן מאליו. בתרגיל הזה ראית עד כמה קל לתת גישה בטעות, וזה הזמן ללמוד ולהיות זהיר יותר.
+      </p>
+
+      <p class="muted text-center mt-4">תרגיל מודעות זה בוצע באופן מקומי בלבד — לא נאסף או נשלח כל מידע אישי.</p>
+
+      <div class="text-center back-btn">
+        <a href="camera-awareness.html" class="btn btn-outline-light">חזרה לדף הקודם</a>
+      </div>
+    </div>
+
+    <!-- English Section -->
+    <div id="english-section" class="hidden" dir="ltr">
+      <h2 class="text-center mb-4">Camera Access Risks & What You Should Know</h2>
+
+      <h4>⚠️ What's the issue?</h4>
+      <p>
+        Some websites request access to your camera and microphone. Sometimes it's legitimate — but it can also be a phishing attempt or a way to spy on you.
+      </p>
+
+      <h4>🎯 Common threats:</h4>
+      <ul>
+        <li>🎥 Taking photos of you or your surroundings without consent</li>
+        <li>🎙️ Listening to conversations in your environment</li>
+        <li>📸 Capturing unintended frames and distributing them</li>
+        <li>🛠️ Installing remote control code to access the camera</li>
+        <li>🕵️ Using facial recognition to infer identity or location</li>
+      </ul>
+
+      <h4>✅ How to protect yourself:</h4>
+      <ul>
+        <li>🔒 Never approve camera access unless you trust the source</li>
+        <li>🔍 Make sure the link is from an official or known source</li>
+        <li>📵 Immediately revoke permissions if triggered accidentally</li>
+        <li>🧯 Use OS settings to limit camera/mic access globally</li>
+        <li>🎭 Physically cover your webcam when not in use</li>
+      </ul>
+
+      <h4>🛡️ Final thoughts:</h4>
+      <p>
+        Camera access is powerful — and shouldn’t be taken lightly. In this simulation, you experienced how easy it is to grant access. Take this moment to think and stay cautious.
+      </p>
+
+      <p class="muted text-center mt-4">This awareness exercise was performed locally — no data was collected or sent.</p>
+
+      <div class="text-center back-btn">
+        <a href="camera-awareness.html" class="btn btn-outline-light">Back to previous page</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleLanguage() {
+      const he = document.getElementById("hebrew-section");
+      const en = document.getElementById("english-section");
+
+      const currentLang = he.classList.contains("hidden") ? "en" : "he";
+
+      if (currentLang === "he") {
+        he.classList.add("hidden");
+        en.classList.remove("hidden");
+        document.body.setAttribute("dir", "ltr");
+        document.body.setAttribute("lang", "en");
+      } else {
+        he.classList.remove("hidden");
+        en.classList.add("hidden");
+        document.body.setAttribute("dir", "rtl");
+        document.body.setAttribute("lang", "he");
+      }
+    }
+  </script>
+</body>
+</html>

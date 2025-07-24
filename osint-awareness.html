@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>מודעות למידע גלוי (OSINT)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    .box {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+    .warning-icon {
+      font-size: 3rem;
+      color: #f44336;
+      text-align: center;
+    }
+    .info-row {
+      border-bottom: 1px solid #666;
+      padding: 0.5rem 0;
+      direction: ltr;
+      text-align: left;
+    }
+    .info-label {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 150px;
+    }
+    .muted {
+      font-size: 0.9rem;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-toggle">
+    <button onclick="toggleLanguage()" class="btn btn-secondary btn-sm">EN / עברית</button>
+  </div>
+
+  <div class="box">
+    <!-- Hebrew Section -->
+    <div id="hebrew-section">
+      <div class="warning-icon">⚠️</div>
+      <h4 class="text-center mt-3">המידע שחשפת מבלי לדעת</h4>
+      <p class="text-center">המידע הבא נאסף מהדפדפן שלך – ללא בקשת הרשאות מיוחדות.</p>
+      <div id="info-he"></div>
+
+      <hr class="mt-4" />
+      <h5 class="text-danger">מה הסיכון?</h5>
+      <ul>
+        <li>📡 תוקפים יכולים לעקוב אחריך לפי טביעת דפדפן</li>
+        <li>🔍 שימוש בפרטים שנשלפים מהדפדפן לניהול מתקפות ממוקדות</li>
+        <li>🧠 מידע זה יכול להסגיר מיקום, מערכת הפעלה, ועוד</li>
+      </ul>
+
+      <p class="muted text-center mt-4">זהו תרגול מודעות פנימי — לא נשמר או נשלח כל מידע.</p>
+    </div>
+
+    <!-- English Section -->
+    <div id="english-section" class="hidden" dir="ltr">
+      <div class="warning-icon">⚠️</div>
+      <h4 class="text-center mt-3">The Information You Just Exposed</h4>
+      <p class="text-center">The following data was collected from your browser — without any special permissions.</p>
+      <div id="info-en"></div>
+
+      <hr class="mt-4" />
+      <h5 class="text-danger">Why it matters</h5>
+      <ul>
+        <li>📡 Attackers can fingerprint and track you</li>
+        <li>🔍 Info collected can be used for phishing and targeted attacks</li>
+        <li>🧠 OS, browser, and network info reveal a lot more than you think</li>
+      </ul>
+
+      <p class="muted text-center mt-4">This is a local awareness simulation — no data was sent or saved.</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleLanguage() {
+      const he = document.getElementById("hebrew-section");
+      const en = document.getElementById("english-section");
+      
+      const currentLang = he.classList.contains("hidden") ? "en" : "he";
+
+      if (currentLang === "he") {
+        he.classList.add("hidden");
+        en.classList.remove("hidden");
+        document.body.setAttribute("dir", "ltr");
+        document.body.setAttribute("lang", "en");
+      } else {
+        he.classList.remove("hidden");
+        en.classList.add("hidden");
+        document.body.setAttribute("dir", "rtl");
+        document.body.setAttribute("lang", "he");
+      }
+    }
+
+    // Initial render: show Hebrew only, hide English
+    window.onload = () => {
+      document.getElementById("hebrew-section").classList.remove("hidden");
+      document.getElementById("english-section").classList.add("hidden");
+      document.body.setAttribute("dir", "rtl");
+      document.body.setAttribute("lang", "he");
+    };
+
+    // Collect and display browser info
+    const userInfo = {
+      "User Agent": navigator.userAgent,
+      "Language": navigator.language,
+      "Platform": navigator.platform,
+      "Screen Size": `${screen.width} x ${screen.height}`,
+      "Timezone": Intl.DateTimeFormat().resolvedOptions().timeZone,
+      "Cookies Enabled": navigator.cookieEnabled ? "Yes" : "No",
+      "JavaScript Enabled": "Yes (you're seeing this)",
+      "Touch Support": 'ontouchstart' in window ? "Yes" : "No",
+      "Device Memory": navigator.deviceMemory ? navigator.deviceMemory + " GB" : "Unknown",
+      "CPU Cores": navigator.hardwareConcurrency || "Unknown"
+    };
+
+    const renderInfo = (targetId) => {
+      const container = document.getElementById(targetId);
+      Object.entries(userInfo).forEach(([key, value]) => {
+        const row = document.createElement("div");
+        row.className = "info-row";
+        row.innerHTML = `<span class="info-label">${key}:</span> ${value}`;
+        container.appendChild(row);
+      });
+    };
+
+    renderInfo("info-he");
+    renderInfo("info-en");
+
+    // Add IP + Location
+    fetch("https://ipapi.co/json")
+      .then(res => res.json())
+      .then(data => {
+        ["info-he", "info-en"].forEach(id => {
+          const ipRow = document.createElement("div");
+          ipRow.className = "info-row";
+          ipRow.innerHTML = `<span class="info-label">IP Address:</span> ${data.ip}`;
+          document.getElementById(id).prepend(ipRow);
+
+          const locRow = document.createElement("div");
+          locRow.className = "info-row";
+          locRow.innerHTML = `<span class="info-label">Approx. Location:</span> ${data.city}, ${data.country_name}`;
+          document.getElementById(id).prepend(locRow);
+        });
+      });
+  </script>
+</body>
+</html>
