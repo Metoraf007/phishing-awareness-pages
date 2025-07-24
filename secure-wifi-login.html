@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>התחברות לרשת Wi-Fi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    .box {
+      max-width: 400px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .spinner-box {
+      text-align: center;
+      margin-top: 5vh;
+    }
+    .loader {
+      width: 100px;
+      margin: 2rem auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-toggle">
+    <button onclick="toggleLanguage()" class="btn btn-secondary btn-sm">EN / עברית</button>
+  </div>
+
+  <div class="box">
+    <!-- Hebrew Login Form -->
+    <div id="hebrew-form">
+      <h4 class="text-center mb-4">התחברות לרשת Wi-Fi מאובטחת</h4>
+      <form id="login-form-he">
+        <div class="mb-3">
+          <label class="form-label">כתובת אימייל ארגונית</label>
+          <input type="text" class="form-control" placeholder="user@demo.com" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">סיסמה ארגונית</label>
+          <input type="password" class="form-control" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">התחבר</button>
+      </form>
+    </div>
+
+    <!-- English Login Form -->
+    <div id="english-form" class="hidden" dir="ltr">
+      <h4 class="text-center mb-4">Secure Wi-Fi Login</h4>
+      <form id="login-form-en">
+        <div class="mb-3">
+          <label class="form-label">Username or Email</label>
+          <input type="text" class="form-control" placeholder="user@demo.com" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+    </div>
+
+    <!-- Fake Spinner -->
+    <div id="spinner" class="spinner-box hidden">
+      <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." class="loader" />
+      <p id="spinner-text">מאמת את פרטי ההתחברות...</p>
+    </div>
+  </div>
+
+  <script>
+    const heForm = document.getElementById("hebrew-form");
+    const enForm = document.getElementById("english-form");
+    const spinner = document.getElementById("spinner");
+    const spinnerText = document.getElementById("spinner-text");
+
+    function toggleLanguage() {
+      const isHebrew = !heForm.classList.contains("hidden");
+      if (isHebrew) {
+        heForm.classList.add("hidden");
+        enForm.classList.remove("hidden");
+        spinnerText.textContent = "Verifying login credentials...";
+        document.body.setAttribute("dir", "ltr");
+        document.body.setAttribute("lang", "en");
+      } else {
+        heForm.classList.remove("hidden");
+        enForm.classList.add("hidden");
+        spinnerText.textContent = "מאמת את פרטי ההתחברות...";
+        document.body.setAttribute("dir", "rtl");
+        document.body.setAttribute("lang", "he");
+      }
+    }
+
+    function simulateLogin(event) {
+      event.preventDefault();
+      heForm.classList.add("hidden");
+      enForm.classList.add("hidden");
+      spinner.classList.remove("hidden");
+      setTimeout(() => {
+        window.location.href = "qr-threat-info.html";
+      }, 2000);
+    }
+
+    document.getElementById("login-form-he").addEventListener("submit", simulateLogin);
+    document.getElementById("login-form-en").addEventListener("submit", simulateLogin);
+
+    // Ensure Hebrew is shown by default
+    window.onload = () => {
+      heForm.classList.remove("hidden");
+      enForm.classList.add("hidden");
+      document.body.setAttribute("dir", "rtl");
+      document.body.setAttribute("lang", "he");
+    };
+  </script>
+</body>
+</html>
